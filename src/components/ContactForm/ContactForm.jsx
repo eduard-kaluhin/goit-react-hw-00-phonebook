@@ -3,19 +3,23 @@ import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
 import { Form } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const ContactForm = ({ onAddContact }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  // const [name, setName] = useState('');
+  // const [number, setNumber] = useState('');
+  const name = useSelector(state => state.contactForm.name);
+  const numer = useSelector(state => state.contactForm.numer);
+  const useDispatch = useDispatch();
 
   const onHandleChange = e => {
     const { name, value } = e.target;
     switch (name) {
       case 'name':
-        setName(value);
+        dispach({ type: 'SET_NAME' });
         break;
       case 'number':
-        setNumber(value);
+        dispach({ type: 'SET_NUMBER' });
         break;
 
       default:
@@ -27,7 +31,7 @@ export const ContactForm = ({ onAddContact }) => {
     e.preventDefault();
 
     const id = nanoid(5);
-    onAddContact ({ id, name, number });
+    onAddContact({ id, name, number });
 
     setName('');
     setNumber('');
@@ -53,6 +57,7 @@ export const ContactForm = ({ onAddContact }) => {
           Number
           <input
             onChange={onHandleChange}
+            value={number}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
