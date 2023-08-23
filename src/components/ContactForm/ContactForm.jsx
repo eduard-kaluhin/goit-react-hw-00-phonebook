@@ -1,25 +1,25 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
 import { Form } from './ContactForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
 
 export const ContactForm = ({ onAddContact }) => {
   // const [name, setName] = useState('');
   // const [number, setNumber] = useState('');
   const name = useSelector(state => state.contactForm.name);
-  const numer = useSelector(state => state.contactForm.numer);
+  const number = useSelector(state => state.contactForm.number);
   const useDispatch = useDispatch();
 
   const onHandleChange = e => {
     const { name, value } = e.target;
     switch (name) {
       case 'name':
-        dispach({ type: 'SET_NAME' });
+        dispach({ type: 'SET_NAME', payload: value });
         break;
       case 'number':
-        dispach({ type: 'SET_NUMBER' });
+        dispach({ type: 'SET_NUMBER', payload: value });
         break;
 
       default:
@@ -32,9 +32,6 @@ export const ContactForm = ({ onAddContact }) => {
 
     const id = nanoid(5);
     onAddContact({ id, name, number });
-
-    setName('');
-    setNumber('');
   };
 
   return (
