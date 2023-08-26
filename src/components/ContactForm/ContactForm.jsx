@@ -1,4 +1,3 @@
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Button, Label, Form, InputName } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactSlice';
@@ -16,7 +15,7 @@ const ContactForm = () => {
     const number = form.number.value;
 
     if (contacts.some(contact => contact.name === name)) {
-      Notify.failure(`${name} is already in contacts`);
+      alert(`${name} is already in contacts`);
       return;
     }
     dispatch(addContact(name, number));
