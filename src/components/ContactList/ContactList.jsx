@@ -13,11 +13,11 @@ const ContactList = () => {
     );
   };
   return (
-    <List>
-      {contactFilter().map(contact => (
-        <ContactItem key={contact.id} contact={contact} />
-      ))}
-    </List>
+    <Ul>
+      {contactFilter().map(contact => {
+        return <ContactItem key={contact.id} contact={contact} />;
+      })}
+    </Ul>
   );
 };
 
