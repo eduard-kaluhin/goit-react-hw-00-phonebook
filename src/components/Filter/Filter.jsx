@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import { FilterLabel, FilterInput } from './Filter.styled';
 import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/phonebookSlice';
