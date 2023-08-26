@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';

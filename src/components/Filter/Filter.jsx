@@ -1,6 +1,6 @@
 import { FilterLabel, FilterInput } from './Filter.styled';
 import { useDispatch } from 'react-redux';
-import { setFilter } from 'redux/phonebookSlice';
+import { setFilter } from 'redux/contactSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();

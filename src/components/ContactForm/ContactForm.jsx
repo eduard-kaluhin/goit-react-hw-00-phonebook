@@ -6,7 +6,7 @@ import { getContacts } from 'redux/selectors';
 
 const ContactForm = () => {
   const contacts = useSelector(getContacts);
-  const useDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -31,7 +31,7 @@ const ContactForm = () => {
           Name
           <input
             onChange={onHandleChange}
-            value={name}
+            value={state}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -44,7 +44,7 @@ const ContactForm = () => {
           Number
           <input
             onChange={onHandleChange}
-            value={number}
+            value={state}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
