@@ -30,8 +30,8 @@ const ContactForm = () => {
         <label>
           Name
           <input
-            onChange={onHandleChange}
-            value={state}
+            onChange
+            value
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -43,8 +43,8 @@ const ContactForm = () => {
         <label>
           Number
           <input
-            onChange={onHandleChange}
-            value={state}
+            onChange
+            value
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
