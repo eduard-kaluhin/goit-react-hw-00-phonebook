@@ -1,33 +1,27 @@
-import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
-
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Form } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactSlice';
+import { getContacts } from 'redux/selectors';
 
-export const ContactForm = ({ onAddContact }) => {
-  const name = useSelector(state => state.contactForm.name);
-  const number = useSelector(state => state.contactForm.number);
-  const dispatch = useDispatch();
-
-  const onHandleChange = e => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        dispatch({ type: 'SET_NAME', payload: value });
-        break;
-      case 'number':
-        dispatch({ type: 'SET_NUMBER', payload: value });
-        break;
-      default:
-        return;
-    }
-  };
+const ContactForm = () => {
+  const contacts = useSelector(getContacts);
+  const useDispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    const id = nanoid(5);
-    onAddContact({ id, name, number });
+    const form = e.target;
+    const name = form.name.value;
+    const number = form.number.value;
+
+    if (contacts.some(contact => contact.name === name)) {
+      Notify.failure('${name} is already in contacts');
+      return;
+    }
+    dispatch(addContact(name, number));
+
+    form.reset();
   };
 
   return (
@@ -56,16 +50,12 @@ export const ContactForm = ({ onAddContact }) => {
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-          />
+          />{' '}
         </label>
         <button type="submit">Add contact</button>
       </Form>
     </>
   );
-};
-
-ContactForm.propTypes = {
-  onAddContact: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
