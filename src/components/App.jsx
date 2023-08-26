@@ -1,4 +1,4 @@
-import './App.css';
+import { Div } from './App.styled';
 
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';

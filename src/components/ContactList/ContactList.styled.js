@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
-export const List = styled.ul`
-  margin-top: 30px;
+export const Ul = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
+  margin-left: 15px;
 `;
